@@ -29,7 +29,7 @@ namespace MicroRabbit.Infra.Bus
             {
                 var eventName = @event.GetType().Name;
 
-                await channel.QueueDeclareAsync(eventName);
+                await channel.QueueDeclareAsync(eventName, false, false, false, null);
 
                 var message = JsonSerializer.Serialize(@event);
                 var body = Encoding.UTF8.GetBytes(message);
